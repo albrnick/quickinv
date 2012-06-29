@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block h1 %}
+<h1>Inventory</h1>
+{% endblock h1 %}
+
+{% block content %}
+<table id="sortable" class="table table-striped table-condensed sortable">
+    <tbody>
+    <tr>
+	<th>SKU</th><th>Status</th><th>Tag</th><th>Notes</th><th>Actions</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+	<td><a href="{% url system_view item.pk %}">{{ item.sku }}</a></td>
+	<td>{{ item.status }}</td>
+	<td>{{ item.tag }}</td><td>{{ item.notes|truncatewords:20 }}</td>
+	<td><a href="{% url item_edit item.pk %}">edit</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

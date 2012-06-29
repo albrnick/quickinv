@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block h1 %}
+{% if item %}
+    <h1>Editing {{ item.code }}</h1>
+{% else %}
+    <h1>New Item</h1>
+{% endif %}
+{% endblock h1 %}
+
+{% block content %}
+<form action="." method="POST">
+    <table>
+	{% for field in item_form %}
+	    {% include 'include/form_row.html' %}
+	{% endfor %}
+	<tr><td colspan="2" style="text-align: center; padding-top: 1em;">
+	    
+	    <input class="btn btn-primary" type="submit" value="{% if item %}Save{% else %}Add{% endif %}" />
+	    {% if not item %}
+	        <input class="btn" name="add_and_add" type="submit" value="Add and add another" />
+            {% endif %}
+	    <a class="btn" href="{% url home %}">Cancel</a>
+            {% csrf_token %}
+	</td></tr>
+    </table>
+</form>
+
+{% endblock content %}

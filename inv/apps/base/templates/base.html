@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/font-awesome.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/inv.css" type="text/css" />
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}js/sortable.js"></script>
+{% block extra_head %}{% endblock %}
+
+</head>
+<body>
+{% block body %}
+
+{% block header %}
+<div id="header">
+</div>
+{% endblock header %}
+
+{% block menu %}
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+	<a class="brand" href="{% url home %}">Trustyd</a>	
+	<ul class="nav">
+	    <li><a href="{% url home %}">Home</a></li>
+	    <li><a href="{% url system_inventory_view %}">Systems In Stock</a></li>
+	    <li><a href="{% url system_build %}">Build a System</a></li>
+	    <li><a href="{% url inventory_view %}">View Inventory</a></li>
+	    <li><a href="{% url item_add %}">Add an Item</a></li>
+	    <!-- <li><a href="#">Stock Adjustment</a></li> -->
+	</ul>	<!-- .nav -->
+    </div>
+  </div>
+</div>
+{% endblock menu %}
+
+
+<div id="content">
+    {% block h1 %}
+    {% endblock h1 %}
+
+	<div id="messages" class="messages">
+{% include 'include/messages.html' %}
+	</div>
+
+
+{% block content %}
+{% endblock content %}
+</div>
+
+{% block footer %}
+<div id="footer">
+</div>
+{% endblock footer %}
+{% endblock body %}
+
+
+{% block javascript %}
+{% endblock javascript %}
+
+
+<script type="text/javascript">
+{% block js %}
+{% endblock js %}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block h1 %}
+<h1>Build a System</h1>
+{% endblock h1 %}
+
+{% block content %}
+
+<form action="." method="POST">
+    <table>
+	{% for field in system_form %}
+	    {% include 'include/form_row.html' %}
+	{% endfor %}
+
+	<tr><td></td><td colspan="">Hard Drives</td></tr>
+
+	{% for form in hard_drive_form_set %}
+	    <tr{% if form.quantity.errors or form.hard_drive.errors %} class="error"{% endif %}>
+		<td class="heading left">
+		</td>
+		<td class="right">
+			<div>{{ form.quantity }} {{ form.hard_drive }}
+			{% if form.quantity.errors or form.hard_drive.errors %}<div>{{ form.quantity.errors }}{{ form.hard_drive.errors }}</div>{% endif %}
+		</td>
+	    </tr>
+	{% endfor %}
+	
+
+	<tr><td colspan="2" style="text-align: center; padding-top: 1em;">
+	    {{ hard_drive_form_set.management_form }}    
+	    <input class="btn btn-primary" type="submit" value="{% if item %}Save{% else %}Build{% endif %}" />
+	    {% if not item %}
+	        <input class="btn" name="build_and_build" type="submit" value="Build and build another" />
+            {% endif %}
+	    <a class="btn" href="{% url home %}">Cancel</a>
+            {% csrf_token %}
+	</td></tr>
+    </table>
+</form>
+
+{% endblock content %}

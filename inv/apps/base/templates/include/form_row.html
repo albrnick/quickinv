@@ -1,0 +1,9 @@
+	<tr{% if field.errors %} class="error"{% endif %}>
+		<td class="heading left">
+			<label for="{{ id }}"{% if field.field.required %} class="required"{% endif %}>{% firstof label field.name|title %}</label>
+		</td>
+		<td class="right">
+			<div>{{ field }}<div class="tip">{{ field.help_text|safe }}</div></div>
+			{% if field.errors %}<div>{{ field.errors }}</div>{% endif %}
+		</td>
+	</tr>
